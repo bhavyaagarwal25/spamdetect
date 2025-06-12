@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Call Spam Checker</title>
+  <style>
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background: linear-gradient(to right, #4facfe, #00f2fe);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      margin: 0;
+    }
+    .container {
+      background-color: #fff;
+      padding: 30px 40px;
+      border-radius: 16px;
+      box-shadow: 0 8px 25px rgba(0,0,0,0.2);
+      text-align: center;
+      width: 320px;
+    }
+    h2 {
+      margin-bottom: 20px;
+      color: #333;
+    }
+    input {
+      width: 100%;
+      padding: 12px;
+      font-size: 16px;
+      border: 1px solid #ccc;
+      border-radius: 10px;
+      margin-bottom: 20px;
+    }
+    button {
+      background-color: #007bff;
+      color: white;
+      padding: 12px 20px;
+      border: none;
+      border-radius: 10px;
+      cursor: pointer;
+      width: 100%;
+      font-size: 16px;
+    }
+    button:hover {
+      background-color: #0056b3;
+    }
+    p {
+      margin-top: 20px;
+      font-size: 18px;
+      font-weight: bold;
+      color: #444;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h2>Check Spam Call</h2>
+    <input type="text" id="numberInput" placeholder="Enter phone number" />
+    <button onclick="checkCall()">Check</button>
+    <p id="callResult"></p>
+  </div>
+
+  <script>
+    function checkCall() {
+      const number = document.getElementById('numberInput').value;
+      fetch('/predict_call', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ number: number })
+      })
+      .then(async (response) => {
+        const text = await response.text();
+        try {
+          const data = JSON.parse(text);
+          document.getElementById('callResult').innerText = data.result;
+        } catch (e) {
+          console.error("Not JSON response:", text);
+          document.getElementById('callResult').innerText = "❌ Server Error. Check console.";
+        }
+      })
+      .catch(err => {
+        console.error("Fetch error:", err);
+        document.getElementById('callResult').innerText = "❌ Network or server error.";
+      });
+    }
+  </script>
+</body>
+</html>
