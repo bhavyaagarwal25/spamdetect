@@ -16,9 +16,14 @@ call_model = joblib.load('spam_detection_model.pkl')
 
 MAX_NUMBER_LENGTH = 13
 LOG_FILE = 'predictions_log.csv'
-
+def clean_text(text):
+    text = re.sub(r'http\S+', '', text)  # remove URLs
+    text = re.sub(r'[^a-zA-Z0-9\s]', '', text)  # remove special characters
+    text = re.sub(r'\s+', ' ', text)  # normalize whitespace
+    return text.strip().lower()
 # ✅ SMS vectorization using Word2Vec
 def get_avg_word2vec(text, model, k=100):
+    text = clean_text(text)
     words = text.lower().split()
     vec = np.zeros(k)
     count = 0
