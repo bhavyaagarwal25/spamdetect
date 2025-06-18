@@ -75,7 +75,7 @@ def log_prediction(number, prediction, confidence):
 
 @app.route('/')
 def landing_page():
-    return render_template('landing.html')
+    return render_template('index.html')
 
 @app.route('/sms')
 def sms_page():
@@ -83,7 +83,7 @@ def sms_page():
 
 @app.route('/call')
 def call_page():
-    return render_template('index.html', prediction=None, number="")
+    return render_template('index1.html', prediction=None, number="")
 @app.route('/predict_sms', methods=['POST'])
 def predict_sms():
     try:
