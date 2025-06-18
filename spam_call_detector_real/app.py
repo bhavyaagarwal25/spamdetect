@@ -83,7 +83,7 @@ def sms_page():
 
 @app.route('/call')
 def call_page():
-    return render_template('index1.html', prediction=None, number="")
+    return render_template('call.html', prediction=None, number="")
 @app.route('/predict_sms', methods=['POST'])
 def predict_sms():
     try:
