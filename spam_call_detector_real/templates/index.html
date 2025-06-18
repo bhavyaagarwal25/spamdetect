@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Call Prediction UI</title>
+  <style>
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      background: linear-gradient(to right, #0f2027, #203a43, #2c5364);
+      color: #fff;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      margin: 0;
+    }
+
+    .container {
+      background-color: rgba(255, 255, 255, 0.1);
+      padding: 30px;
+      border-radius: 16px;
+      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
+      width: 350px;
+    }
+
+    h2 {
+      text-align: center;
+      margin-bottom: 20px;
+    }
+
+    label {
+      display: block;
+      margin-top: 15px;
+      font-weight: bold;
+    }
+
+    input[type="text"], input[type="number"], select {
+      width: 100%;
+      padding: 10px;
+      border-radius: 8px;
+      border: none;
+      margin-top: 5px;
+      font-size: 14px;
+    }
+
+    .saved-toggle {
+      display: flex;
+      align-items: center;
+      margin-top: 5px;
+    }
+
+    .saved-toggle input {
+      margin-right: 10px;
+      transform: scale(1.2);
+    }
+
+    .saved-options {
+      display: flex;
+      gap: 10px;
+      margin-top: 5px;
+    }
+
+    button {
+      width: 100%;
+      margin-top: 25px;
+      padding: 12px;
+      background-color: #1abc9c;
+      color: white;
+      border: none;
+      border-radius: 10px;
+      font-size: 16px;
+      cursor: pointer;
+      transition: background 0.3s;
+    }
+
+    button:hover {
+      background-color: #16a085;
+    }
+
+    .prediction {
+      margin-top: 20px;
+      text-align: center;
+      font-size: 18px;
+      font-weight: bold;
+      color: #ffcc00;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h2>Call Prediction</h2>
+    <form method="POST" action="/predict">
+      <label for="number">Phone Number:</label>
+      <input type="text" id="number" name="number" placeholder="Enter phone number" required />
+
+      <label>Saved in Contacts:</label>
+      <div class="saved-options">
+        <label><input type="radio" name="saved" value="yes" checked /> Yes</label>
+        <label><input type="radio" name="saved" value="no" /> No</label>
+      </div>
+
+      <label for="duration">Call Duration (minutes):</label>
+      <input type="number" id="duration" name="duration" min="0" placeholder="e.g. 5" />
+
+      <label for="frequency">Call Frequency (times):</label>
+      <input type="number" id="frequency" name="frequency" min="0" placeholder="e.g. 10" />
+
+      <label for="time">Time of Day:</label>
+      <select id="time" name="time">
+        <option value="">Select Time</option>
+        <option value="Morning">Morning</option>
+        <option value="Afternoon">Afternoon</option>
+        <option value="Evening">Evening</option>
+        <option value="Night">Night</option>
+      </select>
+
+      <label for="spam_reports">Previous Spam Reports:</label>
+      <input type="number" id="spam_reports" name="spam_reports" min="0" placeholder="e.g. 3" />
+
+      <button type="submit">Predict</button>
+    </form>
+
+    {% if prediction %}
+      <div class="prediction">{{ prediction }}</div>
+    {% endif %}
+  </div>
+</body>
+</html>

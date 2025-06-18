@@ -1,0 +1,36 @@
+country_code,starts_with_140,repeated_digits,call_time,previous_spam_reports,label
+91,0,4,Evening,0,not_spam
+91,1,2,Morning,3,spam
+91,0,5,Afternoon,2,spam
+91,0,7,Evening,5,spam
+91,0,1,Night,0,not_spam
+91,1,2,Afternoon,4,spam
+91,0,6,Morning,3,spam
+91,0,3,Night,1,not_spam
+91,1,4,Evening,5,spam
+91,0,0,Afternoon,0,not_spam
+91,1,5,Evening,6,spam
+91,0,2,Morning,1,not_spam
+91,1,3,Night,5,spam
+91,0,1,Afternoon,0,not_spam
+91,1,4,Morning,2,spam
+91,0,2,Evening,0,not_spam
+91,0,6,Night,4,spam
+91,1,7,Morning,6,spam
+91,0,3,Afternoon,1,not_spam
+91,1,4,Evening,3,spam
+91,0,0,Morning,0,not_spam
+91,1,5,Night,5,spam
+91,0,1,Afternoon,0,not_spam
+91,0,2,Morning,1,not_spam
+91,1,3,Evening,4,spam
+91,0,4,Night,2,not_spam
+91,1,5,Afternoon,5,spam
+91,0,3,Morning,0,not_spam
+91,1,6,Evening,6,spam
+91,0,0,Night,0,not_spam   
+91,0,5,Afternoon,4,spam   # 07304448338
+91,0,4,Night,3,spam       # 08046810648
+91,0,6,Morning,5,spam     # 7318555929
+91,0,7,Evening,6,spam     # extra entry
+91,0,8,Afternoon,7,spam   # extra entry
